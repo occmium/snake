@@ -1,12 +1,21 @@
+require 'byebug'
 require 'ruby2d'
+require_relative 'lib/game'
+require_relative 'lib/worm'
 
-set title: "Hello Triangle"
+set width: 250,
+    height: 250,
+    title: 'Snake',
+    background: 'navy'
 
-Triangle.new(
-  x1: 320, y1:  50,
-  x2: 540, y2: 430,
-  x3: 100, y3: 430,
-  color: ['red', 'green', 'blue']
-)
+PIXEL = 10
+WIDTH = Window.width
+HEIGHT = Window.height
+
+game = Game.new
+worm = Worm.new
+
+game.new_point
+worm.new_worm
 
 show
