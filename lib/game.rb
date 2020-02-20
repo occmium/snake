@@ -1,14 +1,14 @@
 class Game
   def initialize
-    @point_x = PIXEL / 2 + rand(WIDTH)
-    @point_y = PIXEL / 2 + rand(HEIGHT)
+    @point_x = rand(WIDTH)
+    @point_y = rand(HEIGHT)
   end
 
   def new_point
-    Circle.new(
-      x: @point_x,
-      y: @point_y,
-      radius: PIXEL / 2,
+    Square.new(
+      x: @point_x * PIXEL,
+      y: @point_y * PIXEL,
+      size: PIXEL - 1,
       color: 'red'
     )
   end
