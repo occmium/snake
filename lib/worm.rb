@@ -1,5 +1,6 @@
 class Worm
   attr_accessor :direction
+  attr_reader :body_parts
 
   def initialize
     @body_parts = [
@@ -8,9 +9,10 @@ class Worm
       [12, 14]
     ]
     @direction = nil
+    @growing = false
   end
 
-  def new_worm
+  def show
     @body_parts.each do |part|
       Square.new(
         x: part[0] * PIXEL,
@@ -22,11 +24,24 @@ class Worm
   end
 
   def make_step
-    @body_parts.shift if @direction
-    @body_parts << [head[0], head[1] + 1] if @direction == 'down'
-    @body_parts << [head[0], head[1] - 1] if @direction == 'up'
-    @body_parts << [head[0] - 1, head[1]] if @direction == 'left'
-    @body_parts << [head[0] + 1, head[1]] if @direction == 'right'
+    if @direction
+      unless @growing
+        @body_parts.shift
+      end
+    end
+
+    case @direction
+    when 'up'
+      @body_parts << [head[0], head[1] - 1]
+    when 'down'
+      @body_parts << [head[0], head[1] + 1]
+    when 'left'
+      @body_parts << [head[0] - 1, head[1]]
+    when 'right'
+      @body_parts << [head[0] + 1, head[1]]
+    end
+
+    @growing = false
   end
 
   def can_direction_changed?(new_direction)
@@ -38,6 +53,10 @@ class Worm
     else
       new_direction
     end
+  end
+
+  def grow
+    @growing = true
   end
 
   def head
