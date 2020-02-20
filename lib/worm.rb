@@ -46,6 +46,7 @@ class Worm
 
   def can_direction_changed?(new_direction)
     case @direction
+      when nil then new_direction != 'up'
       when 'up' then new_direction != 'down'
       when 'down' then new_direction != 'up'
       when 'left' then new_direction != 'right'
@@ -57,6 +58,14 @@ class Worm
 
   def grow
     @growing = true
+  end
+
+  def ate_self?
+    @body_parts.uniq.size != @body_parts.size
+  end
+
+  def ate_wall?
+    (0...WIDTH).none?(head[0]) || (0...HEIGHT).none?(head[1])
   end
 
   def head

@@ -25,6 +25,9 @@ update do
     worm.grow
     game.count
   end
+  if worm.ate_wall? || worm.ate_self?
+    close
+  end
 end
 
 on :key_down do |key_event|
