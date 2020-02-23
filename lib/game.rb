@@ -1,4 +1,6 @@
 class Game
+  attr_reader :counter
+
   def initialize
     @point_x = rand(WIDTH)
     @point_y = rand(HEIGHT)
@@ -26,6 +28,6 @@ class Game
   end
 
   def to_s
-    " The game is stopped    \n\n Your score #{@counter}"
+    " The game is stopped    \n\n Your score #{@counter}\n\n"
   end
 end

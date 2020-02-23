@@ -3,8 +3,7 @@ require 'ruby2d'
 require_relative 'lib/game'
 require_relative 'lib/worm'
 
-set fps_cap: 7,
-    width: 250,
+set width: 250,
     height: 250,
     title: 'Snake',
     background: 'navy'
@@ -21,10 +20,11 @@ update do
   worm.make_step # змейке сделать шаг в известном направлении
   worm.show # показать все части змейки
   game.show_new_point # показать новую точку
-  if game.did_worm_take_point?(worm.body_parts) # вырасти если попала
-    worm.grow
-    game.count
+  if game.did_worm_take_point?(worm.body_parts) # если тело червя содержит "яблоко"
+    worm.grow # червь начинает расти
+    game.count # игра увеличивает счет
   end
+  sleep 1.0 / (game.counter + 1) if worm.direction
   if worm.ate_wall? || worm.ate_self?
     close
   end
