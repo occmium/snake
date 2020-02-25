@@ -13,7 +13,7 @@ following commands:
 
   + go to the program folder:
 
-    `cd case`
+    `cd snake`
 
   + to install Bundler:
 
