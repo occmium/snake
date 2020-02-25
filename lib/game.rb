@@ -18,7 +18,6 @@ class Game
 
   def did_worm_take_point?(body)
     body.include?([@point_x, @point_y])
-    # body.last == [@point_x, @point_y]
   end
 
   def count

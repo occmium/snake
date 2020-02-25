@@ -17,12 +17,12 @@ worm = Worm.new
 
 update do
   clear
-  worm.make_step # змейке сделать шаг в известном направлении
-  worm.show # показать все части змейки
-  game.show_new_point # показать новую точку
-  if game.did_worm_take_point?(worm.body_parts) # если тело червя содержит "яблоко"
-    worm.grow # червь начинает расти
-    game.count # игра увеличивает счет
+  worm.make_step
+  worm.show
+  game.show_new_point
+  if game.did_worm_take_point?(worm.body_parts)
+    worm.grow
+    game.count
   end
   sleep 1.0 / (game.counter + 1) if worm.direction
   if worm.ate_wall? || worm.ate_self?
