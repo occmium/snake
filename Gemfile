@@ -1,2 +1,13 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '2.7.0'
+
 gem 'ruby2d', '~> 0.9.2'
-gem 'byebug', '~> 11.0', '>= 11.0.1'
+
+group :development, :test do
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rubocop', require: false
+end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Worm
   attr_accessor :direction
   attr_reader :body_parts
@@ -25,9 +27,7 @@ class Worm
 
   def make_step
     if @direction
-      unless @growing
-        @body_parts.shift
-      end
+      @body_parts.shift unless @growing
     end
 
     case @direction
@@ -46,11 +46,11 @@ class Worm
 
   def can_direction_changed?(new_direction)
     case @direction
-      when nil then new_direction != 'up'
-      when 'up' then new_direction != 'down'
-      when 'down' then new_direction != 'up'
-      when 'left' then new_direction != 'right'
-      when 'right' then new_direction != 'left'
+    when nil then new_direction != 'up'
+    when 'up' then new_direction != 'down'
+    when 'down' then new_direction != 'up'
+    when 'left' then new_direction != 'right'
+    when 'right' then new_direction != 'left'
     else
       new_direction
     end

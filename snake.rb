@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'byebug'
 require 'ruby2d'
 require_relative 'lib/game'
@@ -25,15 +27,11 @@ update do
     game.count
   end
   sleep 1.0 / (game.counter + 1) if worm.direction
-  if worm.ate_wall? || worm.ate_self?
-    close
-  end
+  close if worm.ate_wall? || worm.ate_self?
 end
 
 on :key_down do |key_event|
-  if worm.can_direction_changed?(key_event.key)
-    worm.direction = key_event.key
-  end
+  worm.direction = key_event.key if worm.can_direction_changed?(key_event.key)
 end
 
 print "\n The game is running ...\r"
